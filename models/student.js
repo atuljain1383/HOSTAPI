@@ -1,5 +1,6 @@
 import mongoose from 'mongoose';
 import Program from '../models/program.js';
+import AbacusSheet from '../models/AbacusSheet.js';
 
 const studentSchema = new mongoose.Schema({   
     Name: {
@@ -30,7 +31,15 @@ const studentSchema = new mongoose.Schema({
         required:true,
         default:Date.now
     },
-    ProgramsRegisterd:{type:[mongoose.model("Program").schema]}
+    ProgramsRegisterd:{type:[mongoose.model("Program").schema]},
+    Sheets:[
+        {
+           
+                type: mongoose.Schema.Types.ObjectId,
+                ref: 'AbacusSheet'
+            
+        }
+    ]
         
 })
 

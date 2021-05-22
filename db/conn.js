@@ -1,6 +1,8 @@
 import mongoose from 'mongoose';
+import dotnev from "dotenv";
 
-mongoose.connect("mongodb://localhost:27017/HOST", {
+
+mongoose.connect('mongodb+srv://mongodb-atul:54h9P4s1JYEUdqyA@mongodb-cluster.4nsmd.mongodb.net/HOST?retryWrites=true&w=majority', {
     useCreateIndex:true,
     useNewUrlParser:true,
     useUnifiedTopology:true

@@ -2,11 +2,13 @@ import express from 'express';
 import Student from '../models/student.js';
 import dbcon from "../db/conn.js";
 import auth from "../Middleware/Auth.js";
+import AbacusSheet from '../models/AbacusSheet.js';
+import StudentAbacusSheet from '../models/StudentAbacusSheet.js';
 
 const router = express.Router();
 
 
-router.get("/", auth, async(req, res)=> {
+router.get("/", async(req, res)=> {
     try{
         
         const students = await Student.find(); 
@@ -17,22 +19,17 @@ router.get("/", auth, async(req, res)=> {
     }
 });
 
-router.get("/:name",auth, async(req, res)=> {
-    try{
+router.get("/:name", async(req, res)=> {
+  
         const name = req.params.name.toLowerCase();
         const query = { 'Name': new RegExp(`^${name}$`, 'i') };
-        const student = await Student.findOne(query); 
+        const student = await Student.findOne(query).populate("Sheets");
+        
         res.json(student);  
-    }
-    catch{e}{
-       //res.send(e);
-      
-    }
+    
 });
 
-router.post("/",auth, async(req, res)=> {
-   
-        
+router.post("/",auth, async(req, res)=> {        
         const student = new Student(req.body);
         const ret = await student.save();
         console.log(ret);
