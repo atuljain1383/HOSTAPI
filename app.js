@@ -10,7 +10,7 @@ const app = express();
 app.use(express.json());
 app.use(cookieParser())
 app.use(cors());
-const port = process.env.port || 9000;
+const port = process.env.port;
 
 app.use(express.json()); //express.json() is a built express middleware that convert request body to JSON.
 app.use("/program", programRoute);
