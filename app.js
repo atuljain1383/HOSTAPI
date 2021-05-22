@@ -15,6 +15,7 @@ app.use(express.json()); //express.json() is a built express middleware that con
 app.use("/program", programRoute);
 app.use("/student", studentRoute);
 app.use("/login", loginRoute);
+
 const port = process.env.port || 9000;
 
 app.listen(port, () =>{
